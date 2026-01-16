@@ -2,11 +2,11 @@
 # MAIN.PY - Controlador principal
 # ===================================
 
-# Importar módulos
-from data import patients, patient_states, last_id
-from search import search_menu
-from list import list_menu
+# Importar datos (solo variables, no funciones)
+from data import patients, patient_states
 
+# Variable para ID (necesitamos manejarla aquí)
+last_id = 20
 
 # =============================
 # WELCOME MESSAGE
@@ -15,7 +15,6 @@ print("=" * 50)
 print("    SISTEMA CRM PARA TERAPEUTAS")
 print("    Gestión de Pacientes")
 print("=" * 50)
-
 
 # =============================
 # MAIN MENU
@@ -39,7 +38,6 @@ while True:
         print("REGISTRAR NUEVO PACIENTE")
         print("=" * 50)
         
-        # Mostrar tipos de paciente
         print("\nSelecciona el tipo de paciente:")
         for key, value in patient_states.items():
             print(f"  {key}. {value}")
@@ -55,7 +53,6 @@ while True:
                 print(f"\nRegistrando: {patient_states[patient_type]}")
                 print("-" * 30)
                 
-                # Datos básicos
                 first_name = input("Nombre: ")
                 last_name = input("Apellido: ")
                 nombre_completo = first_name + " " + last_name
@@ -148,13 +145,15 @@ while True:
     # OPTION 2: LIST PATIENTS
     # ============================
     elif option == "2":
-        list_menu()  # ← Llamada al módulo list.py
+        # Ejecutar módulo list.py
+        exec(open("list.py").read())
     
     # ============================
     # OPTION 3: SEARCH PATIENTS
     # ============================
     elif option == "3":
-        search_menu()  # ← Llamada al módulo search.py
+        # Ejecutar módulo search.py
+        exec(open("search.py").read())
     
     # ============================
     # OPTION 4: EXIT

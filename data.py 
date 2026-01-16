@@ -1,10 +1,8 @@
 # ===================================
-# DATA.PY - Base de datos y configuración
+# DATA.PY - Base de datos
 # ===================================
 
-# =============================
-# DATABASE - PATIENT LIST
-# =============================
+# Base de datos de pacientes
 patients = [
     {"id": 1, "nombre_completo": "Ana Torres", "correo": "ana.torres@correo.com", "telefono": "+56 9 42351234", "estado": "Cliente potencial"},
     {"id": 2, "nombre_completo": "Luis Ramírez", "correo": "luis.ramirez@correo.com", "telefono": "+56 9 93481234", "estado": "Alto interés"},
@@ -28,14 +26,10 @@ patients = [
     {"id": 20, "nombre_completo": "Ricardo Vergara", "correo": "ricardo.vergara@correo.com", "telefono": "+56 9 78912345", "estado": "Super cliente"}
 ]
 
-# =============================
-# AUTO-INCREMENT ID
-# =============================
+# Último ID usado
 last_id = 20
 
-# =============================
-# PATIENT STATES DICTIONARY
-# =============================
+# Diccionario de estados
 patient_states = {
     1: "Cliente potencial",
     2: "Alto interés",
