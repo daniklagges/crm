@@ -1,0 +1,108 @@
+# ===================================
+# LIST.PY - Módulo de listado
+# ===================================
+
+# Importar datos desde data.py
+from data import patients, patient_states
+
+
+# =============================
+# HELPER: MOSTRAR UN PACIENTE
+# =============================
+def show_patient(patient):
+    """Muestra los datos de un paciente"""
+    print(f"\n  ID: {patient['id']}")
+    print(f"  Nombre: {patient['nombre_completo']}")
+    print(f"  Correo: {patient['correo']}")
+    print(f"  Teléfono: {patient['telefono']}")
+    print(f"  Estado: {patient['estado']}")
+    print("  " + "-" * 30)
+
+
+# =============================
+# LISTAR TODOS
+# =============================
+def list_all():
+    """Lista todos los pacientes registrados"""
+    print("\n" + "=" * 50)
+    print("TODOS LOS PACIENTES")
+    print("=" * 50)
+    
+    if len(patients) == 0:
+        print("\nNo hay pacientes registrados.")
+    else:
+        for patient in patients:
+            show_patient(patient)
+        
+        print(f"\nTotal: {len(patients)} pacientes")
+
+
+# =============================
+# LISTAR POR ESTADO
+# =============================
+def list_by_state():
+    """Lista pacientes filtrados por estado"""
+    print("\n" + "-" * 30)
+    print("FILTRAR POR ESTADO")
+    print("-" * 30)
+    
+    # Mostrar opciones
+    for key, value in patient_states.items():
+        print(f"  {key}. {value}")
+    
+    state_option = input("\nSelecciona estado (1-5): ")
+    
+    if state_option.isdigit():
+        state_option = int(state_option)
+        
+        if state_option in patient_states:
+            selected_state = patient_states[state_option]
+            
+            print("\n" + "=" * 50)
+            print(f"PACIENTES: {selected_state.upper()}")
+            print("=" * 50)
+            
+            count = 0
+            
+            for patient in patients:
+                if patient["estado"] == selected_state:
+                    count += 1
+                    show_patient(patient)
+            
+            if count == 0:
+                print("\nNo hay pacientes con este estado.")
+            else:
+                print(f"\nTotal: {count} pacientes")
+        
+        else:
+            print("\n✗ Estado no válido")
+    else:
+        print("\n✗ Ingresa un número válido")
+
+
+# =============================
+# MENÚ DE LISTADO
+# =============================
+def list_menu():
+    """Submenú de listado con todas las opciones"""
+    while True:
+        print("\n" + "-" * 30)
+        print("LISTAR PACIENTES")
+        print("-" * 30)
+        print("1. Listar todos")
+        print("2. Listar por estado")
+        print("3. Volver al menú principal")
+        
+        sub_option = input("\nSelecciona (1-3): ")
+        
+        if sub_option == "1":
+            list_all()
+        
+        elif sub_option == "2":
+            list_by_state()
+        
+        elif sub_option == "3":
+            break
+        
+        else:
+            print("\n✗ Opción no válida")
